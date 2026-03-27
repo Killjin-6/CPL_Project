@@ -36,7 +36,6 @@ class Parser:
         return data
 
     def getNextToken(self) -> Dict[str, Any]:
-        #Return the next token and advance the parser.
         if self.index < len(self.tokens) - 1:
             self.index += 1
             self.current_token = self.tokens[self.index]
@@ -53,10 +52,10 @@ class Parser:
         return tree
 
     def current_type(self) -> str:
-        return self.current_token.get("type", "") if self.current_token else ""
+        return self.current_token.get("type", "EOF") if self.current_token else "EOF"
 
     def current_value(self) -> str:
-        return self.current_token.get("value", "") if self.current_token else ""
+        return self.current_token.get("value", "EOF") if self.current_token else "EOF"
 
     def current_line(self) -> int:
         return self.current_token.get("line", -1) if self.current_token else -1
@@ -83,17 +82,17 @@ class Parser:
             f"Syntax Error at line {actual_line}: Expected {expected_desc}, "
             f"but found {actual_type}('{actual_value}')."
         )
-    def program(self) -> Dict[str, Any]:
 
+    def program(self) -> Dict[str, Any]:
         statements = []
 
-        while self.current_type()!= "EOF":
+        while self.current_type() != "EOF":
             statements.append(self.statement())
 
-            return {
-                "Type": "Program",
-                "statements": statements,
-            }
+        return {
+            "type": "Program",
+            "statements": statements
+        }
 
     def statement(self) -> Dict[str, Any]:
         if self.current_type() == "KEYWORD" and self.current_value() == "int":

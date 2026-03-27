@@ -1,0 +1,26 @@
+{
+    "type": "Program",
+    "statements": [
+        {
+            "type": "Declaration",
+            "datatype": "int",
+            "identifier": "x",
+            "line": 1
+        },
+        {
+            "type": "Assignment",
+            "identifier": "x",
+            "expression": {
+                "type": "Number",
+                "value": 5,
+                "line": 2
+            },
+            "line": 2
+        },
+        {
+            "type": "Print",
+            "identifier": "x",
+            "line": 3
+        }
+    ]
+}
