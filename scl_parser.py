@@ -2,7 +2,6 @@ import json
 import sys
 from typing import Any, Dict, List, Optional
 
-
 class ParserError(Exception):
     pass
 
@@ -46,10 +45,13 @@ class Parser:
         return identifier in self.symbol_table
 
     def begin(self) -> Dict[str, Any]:
-        #Entry point for parsing.
-        tree = self.program()
+        tree = self.start()
+        #Where we begin parsing
         self.expect("EOF", "EOF")
         return tree
+
+    def start(self) -> Dict[str, Any]:
+        return self.program()
 
     def current_type(self) -> str:
         return self.current_token.get("type", "EOF") if self.current_token else "EOF"
@@ -276,7 +278,6 @@ def main() -> None:
     except ParserError as error:
         print(error)
         sys.exit(1)
-
 
 if __name__ == "__main__":
     main()

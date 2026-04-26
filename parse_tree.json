@@ -4,22 +4,42 @@
         {
             "type": "Declaration",
             "datatype": "int",
-            "identifier": "x",
+            "identifier": "y",
             "line": 1
         },
         {
             "type": "Assignment",
-            "identifier": "x",
+            "identifier": "y",
             "expression": {
-                "type": "Number",
-                "value": 5,
+                "type": "BinaryOp",
+                "operator": "+",
+                "left": {
+                    "type": "Number",
+                    "value": 5,
+                    "line": 2
+                },
+                "right": {
+                    "type": "BinaryOp",
+                    "operator": "*",
+                    "left": {
+                        "type": "Number",
+                        "value": 3,
+                        "line": 2
+                    },
+                    "right": {
+                        "type": "Number",
+                        "value": 2,
+                        "line": 2
+                    },
+                    "line": 2
+                },
                 "line": 2
             },
             "line": 2
         },
         {
             "type": "Print",
-            "identifier": "x",
+            "identifier": "y",
             "line": 3
         }
     ]
